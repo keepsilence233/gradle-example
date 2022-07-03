@@ -131,4 +131,16 @@ afterEvaluate {
 }
 
 
+/**** --- --- --- -- - -- - -- - --- - --- - -- - - -- - -- -- -- -  -- -- - -- - --- - -*****/
 
+/**
+ * 自定义插件
+ */
+class MyAwesomePlugin implements Plugin<Project>{
+
+	@Override
+	void apply(Project target) {
+		println('MyAwesomePlugin')
+	}
+}
+apply plugin:MyAwesomePlugin
