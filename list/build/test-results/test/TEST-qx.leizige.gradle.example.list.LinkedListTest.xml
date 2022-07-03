@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="qx.leizige.gradle.example.list.LinkedListTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2022-07-03T07:22:22" hostname="mac.local" time="0.011">
+  <properties/>
+  <testcase name="testAdd()" classname="qx.leizige.gradle.example.list.LinkedListTest" time="0.009"/>
+  <testcase name="testRemoveMissing()" classname="qx.leizige.gradle.example.list.LinkedListTest" time="0.0"/>
+  <testcase name="testRemove()" classname="qx.leizige.gradle.example.list.LinkedListTest" time="0.0"/>
+  <testcase name="testConstructor()" classname="qx.leizige.gradle.example.list.LinkedListTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
