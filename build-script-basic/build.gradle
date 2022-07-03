@@ -1,0 +1,125 @@
+plugins {
+	id 'java'
+}
+
+group 'qx.leizige.gradle.build.script'
+version '1.0.1'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+	useJUnitPlatform()
+}
+
+/**
+ * <p>
+ *     执行命令：gradle -q build-script-basic:[task name]
+ *     -q参数：会抑制 Gradle 的日志消息，因此只显示任务的输出。这使本用户指南中的示例输出更加清晰。
+ * </p>
+ */
+
+/**
+ * <p>
+ *     gradle 构建脚本基础
+ *     此构建脚本定义了一个名为 的任务，hello并向其添加了一个操作。
+ *     当您运行时gradle hello，Gradle 会执行hello任务，而任务又会执行您提供的操作。该动作只是一个包含一些要执行的代码的块。
+ * </p>
+ */
+tasks.register('hello') {
+	doLast {
+		println 'hello world'
+	}
+}
+
+tasks.register('upper') {
+	doLast {
+		String someString = 'mY_nAmE'
+		println "Original: $someString"
+		println "Upper case: ${someString.toUpperCase()}"
+	}
+}
+
+tasks.register('count') {
+	doLast {
+		4.times { print "$it " }
+	}
+}
+
+/**** --- --- --- -- - -- - -- - --- - --- - -- - - -- - -- -- -- -  -- -- - -- - --- - -*****/
+
+/**
+ * 任务依赖
+ * 依赖hello任务
+ */
+tasks.register('intro') {
+	dependsOn tasks.hello
+	doLast {
+		print 'Im Gradle'
+	}
+}
+
+/**
+ * 任务依赖
+ * taskXto的依赖关系taskY可以在taskY定义之前声明
+ */
+tasks.register('taskX') {
+	dependsOn 'taskY'
+	doLast {
+		println 'taskX'
+	}
+}
+tasks.register('taskY') {
+	doLast {
+		println 'taskY'
+	}
+}
+
+/**** --- --- --- -- - -- - -- - --- - --- - -- - - -- - -- -- -- -  -- -- - -- - --- - -*****/
+
+/**
+ * 任务注册
+ */
+10.times { counter ->
+	tasks.register("task$counter") {
+		doLast {
+			println "I'm task number $counter"
+		}
+	}
+}
+/**
+ * 操作现有任务
+ * 一旦注册了任务，就可以通过API访问它们。例如，您可以使用它在运行时动态地将依赖项添加到任务。
+ */
+tasks.named('task0') { dependsOn('task2', 'task3') }
+
+/**** --- --- --- -- - -- - -- - --- - --- - -- - - -- - -- -- -- -  -- -- - -- - --- - -*****/
+
+/**
+ * 使用ant任务
+ */
+//tasks.register('loadFile') {
+//	doLast {
+//		def fileList = file('./antLoadfileResources').listFiles().sort()
+//		fileList.each { File file ->
+//			{
+//				if (file.isFile()) {
+//					ant.loadfile(srcFile: file, property: file.name)
+//					println " *** $file.name ***"
+//					println "${ant.properties[file.name]}"
+//				}
+//			}
+//		}
+//	}
+//}
+
+
+
+
+
