@@ -33,7 +33,9 @@ test {
  * </p>
  */
 tasks.register('hello') {
+	println('hello  task')	//该语句运行在configuration阶段，在hello任务创建时执行
 	doLast {
+		//只有在hello任务真正被调用时,该语句才会被执行
 		println 'hello world'
 	}
 }
@@ -119,7 +121,14 @@ tasks.named('task0') { dependsOn('task2', 'task3') }
 //	}
 //}
 
+/**** --- --- --- -- - -- - -- - --- - --- - -- - - -- - -- -- -- -  -- -- - -- - --- - -*****/
 
+/**
+ * project阶段执行完成之后的一个钩子函数
+ */
+afterEvaluate {
+	println('afterEvaluate ......')
+}
 
 
 
